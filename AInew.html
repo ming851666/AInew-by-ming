@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -33,19 +30,20 @@
             padding: 20px;
         }
         .news-feed {
-            width: 98%;
-            height: 40%; /* 将高度增加到40% */
-            overflow-y: auto;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 10px;
-            box-sizing: border-box;
-            background-color: rgba(255, 255, 255, 0.9); /* 白色背景，透明度50% */
-            margin-left: 1%;
-            position: relative;
-            top: 10%; /* 沿Y轴下移15% */
-        }
+    width: 98%;
+    height: 55%; /* 将高度增加到55% */
+    overflow-y: auto;
+    margin-bottom: 20px;
+    border: 2px solid; 
+    border-image: linear-gradient(to right, #738bf8, #9932CC, #00FFFF) 1; /* 蓝紫色渐变，你可以根据喜好调整颜色 */
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.2); /* 白色背景，透明度50% */
+    margin-left: 1%;
+    position: relative;
+    top: 10%; /* 沿Y轴下移15% */
+}
         .refresh-button-container {
             display: flex;
             justify-content: flex-end;
@@ -98,24 +96,24 @@
             width: calc(33% - 10px);
         }
         .news-image {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            margin-right: 10px;
-            border-radius: 5px;
-        }
+    width: 70px; /* 原宽度100px，减小30%后为70px */
+    height: 70px; /* 原高度100px，减小30%后为70px */
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 5px;
+}
         .news-details {
             flex-grow: 1;
         }
         .news-title {
-            font-size: 1.2em;
-            color: #333;
-            margin-bottom: 5px;
-        }
+    font-size: 0.84em; /* 原字体大小1.2em，减小30%后为1.2 * (1 - 30%) = 0.84em */
+    color: #333;
+    margin-bottom: 5px;
+}
         .news-date {
-            font-size: 0.9em;
-            color: rgba(0, 0, 0, 0.5);
-        }
+    font-size: 0.63em; /* 原字体大小0.9em，减小30%后为0.9 * (1 - 30%) = 0.63em */
+    color: rgba(0, 0, 0, 0.5);
+}
         .button-area {
             display: flex;
             justify-content: flex-start; /* 向左靠拢 */
@@ -141,12 +139,14 @@
             border-color: #bbb;
         }
         .chat-messages {
-            flex: 1;
-            padding: 50px;
-            overflow-y: auto;
-            background-color: transparent;
-            display: block; /* 初始状态下显示 */
-        }
+    flex: 1;
+    padding: 50px;
+    overflow-y: auto;
+    background-color: transparent;
+    display: block; /* 初始状态下显示 */
+    /* 这里可以简单设置一个基础比例，后续由JavaScript动态计算 */
+    height: 260%; 
+}
         .message.user {
             display: flex;
             justify-content: flex-end;
@@ -353,65 +353,87 @@
 <body>
     <div class="chat-container">
         <div class="news-feed" id="newsFeed">
-            <div class="refresh-button-container">
-                <button class="refresh-button" onclick="refreshNews()">
-                    <span>🔄</span>
-                </button>
-            </div>
-            <div class="news-row" id="newsRow1">
-                <div class="news-item">
-                    <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 1" class="news-image">
-                    <div class="news-details">
-                        <div class="news-title">人工智能技术引领未来</div>
-                        <div class="news-date">2025年1月30日</div>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 2" class="news-image">
-                    <div class="news-details">
-                        <div class="news-title">AI改变生活的力量</div>
-                        <div class="news-date">2025年1月29日</div>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 3" class="news-image">
-                    <div class="news-details">
-                        <div class="news-title">探索机器学习的奥秘</div>
-                        <div class="news-date">2025年1月28日</div>
-                    </div>
-                </div>
-            </div>
-            <div class="news-row" id="newsRow2">
-                <div class="news-item">
-                    <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 4" class="news-image">
-                    <div class="news-details">
-                        <div class="news-title">深度学习的发展趋势</div>
-                        <div class="news-date">2025年1月27日</div>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 5" class="news-image">
-                    <div class="news-details">
-                        <div class="news-title">自然语言处理的新进展</div>
-                        <div class="news-date">2025年1月26日</div>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 6" class="news-image">
-                    <div class="news-details">
-                        <div class="news-title">计算机视觉的应用案例</div>
-                        <div class="news-date">2025年1月25日</div>
-                    </div>
-                </div>
+    <div class="refresh-button-container">
+        <button class="refresh-button" onclick="refreshNews()">
+            <span>🔄</span>
+        </button>
+    </div>
+    <div class="news-row" id="newsRow1">
+        <div class="news-item">
+            <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 1" class="news-image">
+            <div class="news-details">
+                <div class="news-title">人工智能技术引领未来</div>
+                <div class="news-date">2025年1月30日</div>
             </div>
         </div>
+        <div class="news-item">
+            <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 2" class="news-image">
+            <div class="news-details">
+                <div class="news-title">AI改变生活的力量</div>
+                <div class="news-date">2025年1月29日</div>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 3" class="news-image">
+            <div class="news-details">
+                <div class="news-title">探索机器学习的奥秘</div>
+                <div class="news-date">2025年1月28日</div>
+            </div>
+        </div>
+    </div>
+    <div class="news-row" id="newsRow2">
+        <div class="news-item">
+            <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 4" class="news-image">
+            <div class="news-details">
+                <div class="news-title">深度学习的发展趋势</div>
+                <div class="news-date">2025年1月27日</div>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 5" class="news-image">
+            <div class="news-details">
+                <div class="news-title">自然语言处理的新进展</div>
+                <div class="news-date">2025年1月26日</div>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 6" class="news-image">
+            <div class="news-details">
+                <div class="news-title">计算机视觉的应用案例</div>
+                <div class="news-date">2025年1月25日</div>
+            </div>
+        </div>
+    </div>
+    <div class="news-row" id="newsRow3">
+        <div class="news-item">
+            <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 7" class="news-image">
+            <div class="news-details">
+                <div class="news-title">新增新闻标题1</div>
+                <div class="news-date">2025年1月24日</div>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 8" class="news-image">
+            <div class="news-details">
+                <div class="news-title">新增新闻标题2</div>
+                <div class="news-date">2025年1月23日</div>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://img.alicdn.com/tfs/TB1QVgGqYLYBeNjy0FiXXcXgpXa-300-300.png" alt="News Image 9" class="news-image">
+            <div class="news-details">
+                <div class="news-title">新增新闻标题3</div>
+                <div class="news-date">2025年1月22日</div>
+            </div>
+        </div>
+    </div>
+</div>
         <div class="button-area">
+    <button onclick="showCompanySelector()">大公司资讯</button>
     <button onclick="sendMessage('行业报告')">行业报告</button>
-    <button onclick="window.open('https://www.aigc.cn/#term-1907-700', '_blank')">AI工具大全</button>
     <button onclick="showToolReportSelector()">AI工具测评报告</button>
     <button onclick="toggleAIDialog()">AI入门</button>
-    <button onclick="showCompanySelector()">大公司资讯</button>
-    <button onclick="sendMessage('实时行业资讯')">实时行业资讯</button>
+    <button onclick="window.open('https://www.aigc.cn/#term-1907-700', '_blank')">AI工具大全</button>
     <button onclick="goToHome()">主页</button> <!-- 新增主页按钮 -->
     </div>
         <div class="chat-messages" id="chatMessages"></div>
@@ -868,30 +890,30 @@ function updateCurrentMessage(content) {
         }
 
         function updateNewsFeed(newsData) {
-            for (let i = 1; i <= 6; i++) {
-                const newsItem = {
-                    title: newsData[`new${i}`] || "无标题",
-                    url: newsData[`newurl${i}`] || "#",
-                    date: newsData[`newtime${i}`] || "未知日期",
-                    image: newsData[`newimage${i}`] || "https://via.placeholder.com/100"
-                };
+    for (let i = 1; i <= 9; i++) {
+        const newsItem = {
+            title: newsData[`new${i}`] || "无标题",
+            url: newsData[`newurl${i}`] || "#",
+            date: newsData[`newtime${i}`] || "未知日期",
+            image: newsData[`newimage${i}`] || "https://via.placeholder.com/100"
+        };
 
-                const rowNumber = Math.ceil(i / 3);
-                const itemIndex = (i - 1) % 3;
-                const newsRow = document.getElementById(`newsRow${rowNumber}`);
-                const newsItems = newsRow.getElementsByClassName('news-item');
+        const rowNumber = Math.ceil(i / 3);
+        const itemIndex = (i - 1) % 3;
+        const newsRow = document.getElementById(`newsRow${rowNumber}`);
+        const newsItems = newsRow.getElementsByClassName('news-item');
 
-                if (newsItems[itemIndex]) {
-                    const img = newsItems[itemIndex].querySelector('.news-image');
-                    const title = newsItems[itemIndex].querySelector('.news-title');
-                    const date = newsItems[itemIndex].querySelector('.news-date');
+        if (newsItems[itemIndex]) {
+            const img = newsItems[itemIndex].querySelector('.news-image');
+            const title = newsItems[itemIndex].querySelector('.news-title');
+            const date = newsItems[itemIndex].querySelector('.news-date');
 
-                    img.src = newsItem.image;
-                    title.innerHTML = `<a href="${newsItem.url}" target="_blank">${newsItem.title}</a>`;
-                    date.textContent = newsItem.date;
-                }
-            }
+            img.src = newsItem.image;
+            title.innerHTML = `<a href="${newsItem.url}" target="_blank">${newsItem.title}</a>`;
+            date.textContent = newsItem.date;
         }
+    }
+}
 
         function goToHome() {
             document.getElementById('newsFeed').style.display = 'block'; // 显示新闻资讯展示框
@@ -918,20 +940,21 @@ function updateCurrentMessage(content) {
         };
 
         function adjustChatMessagesHeight() {
-            const chatContainer = document.querySelector('.chat-container');
-            const buttonArea = document.querySelector('.button-area');
-            const inputArea = document.querySelector('.input-area');
-            const newsFeed = document.querySelector('.news-feed');
+    const chatContainer = document.querySelector('.chat-container');
+    const buttonArea = document.querySelector('.button-area');
+    const inputArea = document.querySelector('.input-area');
+    const newsFeed = document.querySelector('.news-feed');
 
-            const containerHeight = chatContainer.clientHeight;
-            const buttonAreaHeight = buttonArea.offsetHeight;
-            const inputAreaHeight = inputArea.offsetHeight;
-            const newsFeedHeight = newsFeed.offsetHeight;
+    const containerHeight = chatContainer.clientHeight;
+    const buttonAreaHeight = buttonArea.offsetHeight;
+    const inputAreaHeight = inputArea.offsetHeight;
+    const newsFeedHeight = newsFeed.offsetHeight;
 
-            const availableHeight = containerHeight - buttonAreaHeight - inputAreaHeight - newsFeedHeight - 40; // 40px for some extra spacing
+    const availableHeight = containerHeight - buttonAreaHeight - inputAreaHeight - newsFeedHeight - 40; // 40px for some extra spacing
+    const increasedHeight = availableHeight * 2.6; // 高度增加到原来的 2.6 倍
 
-            document.querySelector('.chat-messages').style.maxHeight = `${availableHeight}px`;
-        }
+    document.querySelector('.chat-messages').style.maxHeight = `${increasedHeight}px`;
+}
     </script>
 </body>
 </html>
